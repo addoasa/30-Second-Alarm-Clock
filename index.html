@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link <link rel="stylesheet" type="text/css" href="css/main.css">
+	<title>Alarm Clock</title>
+</head>
+<body>
+	<!-- <input type="datetime-local"> -->
+	<div id="divTime"></div><!-- ----1)first you make a div for your clock display -->
+	<p>This clock will alert user every 30 minutes</p>
+<script> 
+// ----2)next you define a function that will display your time
+	function timeDisplay(){
+// we then define a date
+		var date= new Date(); //--This variable will always give you your browsers current date and time
+		var hours= date.getHours();
+		var minutes= date.getMinutes();
+		var seconds= date.getSeconds();
+		var amOrPm= "AM"
+//declare the individual aspects of the clock first
+		if(hours==0){
+			hours=12;
+		}
+		if(hours>=12){
+			hours=hours-12;
+			amOrPm= "PM";
+
+//so basically when time goes past twelve AM which is default by the variable amOrPm, AM will be changed to PM just as 11 is subtracted from 12
+		}
+//then set any conditionals to the clock. This rule is for when i dont want a military style clock. Anytime the clock reaches past 12 it will reset to 1
+
+
+		if(hours <10){
+			hours="0" + hours;  
+		}
+		if(minutes <10){
+			minutes="0" + minutes;  
+		}
+		if(seconds <10){
+			seconds="0" + seconds;  
+		}
+
+//these conditions will prevent single digit numbers from standing alone. They will be accompanied by 0. Ex: 02:08:01
+		var fullTime=hours+":"+minutes+":"+seconds + amOrPm;
+//then create the order in which they will appear and set that equal to value of time
+		document.getElementById("divTime").innerHTML = fullTime	;
+//you then want to insert all of this into th div above called "theTime". getElementById selects the div "theTime" for alteration. inner html will insert the value of time into the div theTime as text
+	
+		// setTimeout(showTime,1000);
+		// ^^this is just another way to get the clock ticking. placing setTimeout() inside of the function as opposed to placing setInterval() outside the function will have the same effect.		
+		if(minutes==0 || minutes==30){
+			alert("Wake up sleepy head!");
+			var audio = new Audio("sound/alarm.mp3"); 
+			// ----this sound goes off in firefox but not in chrome
+            audio.play();
+		}
+	}
+
+	timeDisplay();
+
+//     ^now you call the function so that all of this runs. time will be inserted into the div "theTime". HOWEVER if you just run the functionn like this you will have a static clock.
+
+//you must use the setInterval method in order to have a ticking clock
+	setInterval(timeDisplay, 1000);
+//use set interval and insert your function in the () along with 1000 milliseconds which represents a tick every second. ever 1 second the clock ticks 1 second. if you set this number to 4000 for example, then every four seconds the clock will tick 4 seconds in one motion. 
+ 	function alarm(){
+
+ 		document.getElementById(divTime).value;
+ 		var ring= divTime;
+
+ 		if (divTime= "0"+0 + ":"+ 30 +":"+ "0" +0 + amOrPm);
+ 			alert("wakeup");
+
+ 		}
+ 	alarm(ring);
+</script>
+</body>
+</html>
